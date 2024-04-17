@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Skill Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open+Sans', sans-serif;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-outline {
+            border: 2px solid #000;
+            color: #000;
+            background-color: transparent;
+        }
+        .btn-primary {
+            border: 2px solid transparent;
+            color: #fff;
+            background-color: #000;
+        }
+        .input-field {
+            padding: 0.5rem;
+            border: 2px solid #000;
+            border-radius: 0.25rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold">AI Skill Builder</h1>
+            <p class="mt-4 text-lg">
+                Build your skills and get successful with this AI based skill builder. It guides you
+                in your UCAT exam, Interview Preparation with the help of AI and the best of approved
+                content by the medschool trainers.
+            </p>
+        </header>
+        <div class="flex justify-center space-x-4 mb-8">
+            <button class="btn btn-outline">UCAT</button>
+            <button class="btn btn-outline">Interviews</button>
+        </div>
+        <div class="max-w-md mx-auto">
+            <label for="helpInput" class="block text-lg font-semibold mb-2">How Can I help you today?</label>
+            <div class="flex">
+                <input type="text" id="helpInput" class="input-field flex-grow mr-2" placeholder="Type your question">
+                <button class="btn btn-primary">Go</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
