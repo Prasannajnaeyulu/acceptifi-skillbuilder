@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paragraph Highlighter</title>
+<style>
+  .highlight {
+    background-color: yellow;
+  }
+</style>
+</head>
+<body>
+
+<label for="userParagraph">Enter your paragraph:</label><br>
+<textarea id="userParagraph" rows="4" cols="50"></textarea><br>
+
+<label for="wordCount">Number of Words:</label>
+<select id="wordCount">
+  <option value="1">1</option>
+  <option value="2" selected>2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <!-- Add more options as needed -->
+</select>
+
+<label for="speed">Speed (seconds):</label>
+<select id="speed">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <!-- Add more options as needed -->
+</select>
+<button onclick="highlightWords()">Start</button>
+
+<p id="paragraph"></p>
+
+<script>
+function highlightWords() {
+  var userParagraph = document.getElementById("userParagraph").value.trim();
+  var wordCount = parseInt(document.getElementById("wordCount").value);
+  var speed = parseInt(document.getElementById("speed").value) * 1000; // Convert to milliseconds
+
+  if (!userParagraph) {
+    alert("Please enter a paragraph.");
+    return;
+  }
+
+  var paragraph = document.getElementById("paragraph");
+  paragraph.innerText = userParagraph;
+
+  var words = userParagraph.split(" ");
+  var index = 0;
+
+  function highlightNext() {
+    if (index < words.length - (wordCount - 1)) {
+      var start = index;
+      var end = Math.min(index + wordCount, words.length);
+      for (var i = start; i < end; i++) {
+        words[i] = '<span class="highlight">' + words[i] + '</span>';
+      }
+      paragraph.innerHTML = words.join(" ");
+      index = end;
+      setTimeout(function() {
+        clearHighlights(start, end);
+        highlightNext();
+      }, speed);
+    } else {
+      alert("End of paragraph reached!");
+      // Reset index for re-highlighting if needed
+      index = 0;
+    }
+  }
+
+  highlightNext();
+}
+
+function clearHighlights(start, end) {
+  var paragraph = document.getElementById("paragraph");
+  var words = paragraph.innerHTML.split(" ");
+  for (var i = start; i < end; i++) {
+    words[i] = words[i].replace('<span class="highlight">', '').replace('</span>', '');
+  }
+  paragraph.innerHTML = words.join(" ");
+}
+</script>
+
+</body>
+</html>
